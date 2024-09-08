@@ -13,8 +13,8 @@
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
-               <ExampleTask.h> - Library for GUI widgets.
-                    Created by Cor Hofman, 06 Aug 2024
+               <TerraBox_Scheduler.h> - Library for GUI widgets.
+                                9 Aug 2024
                        Released into the public domain
                      as GitHub project: TerraBox_Scheduler
                    under the GNU General public license V3.0
@@ -40,30 +40,14 @@
  *  ==========================================================================
  *
  *--------------------------------------------------------------------------*/
+#ifndef TERRABOX_SCHEDULER_H_
+#define TERRABOX_SCHEDULER_H_
 
-/*
- * ExampleTask.h
- *
- *  Created on: 6 Aug 2024
- *      Author: corhofman
- */
 
-#ifndef EXAMPLETASK_H_
-#define EXAMPLETASK_H_
+#define RELEASE             "1.0.0"     // The Release number
+#define RELEASE_MAJOR       1           // The major release
+#define RELEASE_MINOR       0           // The minor release
+#define RELEASE_MAINTENANCE 0           // The maintenance release
 
-#include "Task.h"
 
-/*
- *
- */
-class ExampleTask : public Task {
-public:
-	ExampleTask(char *name);
-	ExampleTask(char *name, long cycleTime);
-	virtual ~ExampleTask();
-
-	void exec();
-
-};
-
-#endif /* EXAMPLETASK_H_ */
+#endif /* TERRABOX_SCHEDULER_H_ */

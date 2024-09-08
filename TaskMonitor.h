@@ -14,7 +14,7 @@
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
                <TaskMonitor.h> - Library for GUI widgets.
-                    Created by Cor Hofman, 9 Aug 2024
+                             9 Aug 2024
                        Released into the public domain
                      as GitHub project: TerraBox_Scheduler
                    under the GNU General public license V3.0

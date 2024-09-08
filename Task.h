@@ -11,12 +11,12 @@
                     A R D U I N O   S C H E D U L E R
 
 
-                 (C) 2024, C. Hofman - cor.hofman@terrabox.nl
+               (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
-               <${name}> - Library for GUI widgets.
-                    Created by Cor Hofman, ${date}
+                   <Task.h> - Library for GUI widgets.
+                               16 Aug 2024
                        Released into the public domain
-                     as GitHub project: TerraBox_Scheduler
+                 as GitHub project: TerraboxNL/TerraBox_Scheduler
                    under the GNU General public license V3.0
                           
       This program is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@
  *--------------------------------------------------------------------------*/
 #include <Arduino.h>
 #include <stdint.h>
+#include <TerraBox_Scheduler.h>
 
 #ifndef TASK_H_
 #define TASK_H_
@@ -62,6 +63,7 @@
 class Task {
 
   public:
+	char nameId[16]    = "Task";
     uint32_t cycleTime = CYCLE_TIME;       // Cycle in ms. Restarts every cycle.
     uint8_t  state     = STATE_NEW;        // Default state of task just created
     uint16_t stalling  = 0;                // Counts number of stalls

@@ -14,7 +14,7 @@
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
                <TaskScheduler.cpp> - Library for GUI widgets.
-                    Created by Cor Hofman, 06 Aug 2024
+                               06 Aug 2024
                        Released into the public domain
                      as GitHub project: TerraBox_Scheduler
                    under the GNU General public license V3.0
@@ -41,6 +41,7 @@
  *
  *--------------------------------------------------------------------------*/
 #include <TaskScheduler.h>
+#include <TerraBox_Widgets.h>
 
 
 /*--------------------------------------------------------------------------------------------------
@@ -51,6 +52,15 @@
 TaskScheduler::TaskScheduler() :
                Task("Scheduler", 0) {
 
+}
+
+/*--------------------------------------------------------------------------------------------------
+ *
+ *  Return the release number
+ *
+ *------------------------------------------------------------------------------------------------*/
+const char* getRelease() {
+  return (const char*) RELEASE;
 }
 
 /*--------------------------------------------------------------------------------------------------
@@ -91,7 +101,7 @@ void TaskScheduler::schedule() {
       // and make its state STATE_IDLE.
       //
       case STATE_NEW: {
-        task->begin();
+//        task->begin();
         task->state    = STATE_IDLE;
         task->started  = 0;
         task->elapsed  = 0;
@@ -172,11 +182,16 @@ void TaskScheduler::schedule() {
 uint16_t TaskScheduler::run(Task* task) {
 
   //
-  // Check to see if the name doesn't already exist
+  // Check to see if the name already exists
   //
   if (find(task->name)) {
     return 0;
   }
+
+  //
+  //  Initialize the task
+  //
+  task->begin();
 
   //
   // Assign it its maiden state.
@@ -195,7 +210,10 @@ uint16_t TaskScheduler::run(Task* task) {
   //
   //  Add it at the head of the list
   //
-  tasklist     = tl;
+  if (tasklist) {
+    tasklist->prev = tl;
+  }
+  tasklist       = tl;
 
   //
   //  Return the assigned TID
@@ -265,8 +283,36 @@ uint16_t TaskScheduler::getTID(char* name) {
  *
  *------------------------------------------------------------------------------------------------*/
 void TaskScheduler::kill(Task* task) {
-  if (task)
+  if (task) {
     task->state = STATE_2B_KILLED;
+
+    TaskList* l   = find(task->name);
+    if (l) {
+
+    	//
+    	//  If it is the first task in the list
+    	//
+    	if (l == tasklist) {
+            tasklist = l->next;          // next becomes first now
+            if (tasklist)
+              tasklist->prev = nullptr;  // next is now first, so has no previous
+    	}
+    	//
+    	//  Otherwise it has a next and a previous
+    	//
+    	else {
+            l->prev->next = l->next;
+        	if (l->next)
+              l->next->prev = l->prev;
+    	}
+
+        l->next = nullptr;
+        l->prev = nullptr;
+    }
+    delete l;
+
+    task->state = STATE_KILLED;
+  }
 }
 
 /*--------------------------------------------------------------------------------------------------
@@ -317,11 +363,11 @@ void TaskScheduler::monitor() {
     char line[100];
 //	Serial.println(F("         1         2         3         4         5         6         7         8"));
 //	Serial.println(F("12345678901234567890123456789012345678901234567890123456789012345678901234567890"));
-	Serial.println(F("TID         Name  Cycle STA      Start   Wait  Stall    Elapsed Invoke"));
-	Serial.println(F("----------------------------------------------------------------------"));
+	Serial.println(F("TID             Name  Cycle STA      Start   Wait  Stall    Elapsed Invoke"));
+	Serial.println(F("--------------------------------------------------------------------------"));
 	for (TaskList* l = tasklist; l; l = l->next) {
 		Task* t = l->task;
-		sprintf(line, "%3d %12s %6lu %3u %10lu %6lu %6u %10lu %6lu    ",
+		sprintf(line, "%3d %16s %6lu %3u %10lu %6lu %6u %10lu %6lu    ",
 				       l->tid,
 					       t->name,
 							    t->cycleTime,

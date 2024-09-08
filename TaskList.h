@@ -11,13 +11,13 @@
                     A R D U I N O   S C H E D U L E R
 
 
-                 (C) 2024, C. Hofman - cor.hofman@terrabox.nl
+              (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
                <TaskList.h> - Library for GUI widgets.
-                    Created by Cor Hofman, 06 Aug 2024
-                       Released into the public domain
-                     as GitHub project: TerraBox_Scheduler
-                   under the GNU General public license V3.0
+                            06 Aug 2024
+                      Released into the public domain
+              as GitHub project: TerraboxNL/TerraBox_Scheduler
+                 under the GNU General public license V3.0
                           
       This program is free software: you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by

@@ -7,18 +7,18 @@
        //   //     //  //  // //   //   //    //   // //   //  // //
       //   ////// //   // //   // //   //    //////    ////  //   //
 
-
-                    A R D U I N O   S C H E D U L E R
+     
+               A R D U I N O   E E P R O M   M A N A G E M E N T
 
 
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
-               <ExampleTask.cpp}> - Library for GUI widgets.
-                    Created by Cor Hofman, 06 Aug 2024
+    <Persistence.cpp> - Library managing Arduino persistent memory usage.
+                               16 Aug 2024
                        Released into the public domain
-                     as GitHub project: TerraBox_Scheduler
+              as GitHub project: TerraboxNL/TerraBox_Persistence
                    under the GNU General public license V3.0
-
+                          
       This program is free software: you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
       the Free Software Foundation, either version 3 of the License, or
@@ -40,20 +40,4 @@
  *  ==========================================================================
  *
  *--------------------------------------------------------------------------*/
-#include <ExampleTask.h>
-#include <Arduino.h>
-
-ExampleTask::ExampleTask(char* name) :
-             Task(name) {
-
-}
-
-ExampleTask::ExampleTask(char *name, long cycleTime) :
-             Task(name, cycleTime) {
-
-}
-
-void ExampleTask::exec() {
-	Serial.println("Tick tock");
-}
 

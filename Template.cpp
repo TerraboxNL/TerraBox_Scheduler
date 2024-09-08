@@ -14,10 +14,10 @@
                  (C) 2024, C. Hofman - cor.hofman@terrabox.nl
 
                <${name}> - Library for GUI widgets.
-                    Created by Cor Hofman, ${date}
+                              ${date}
                        Released into the public domain
-                     as GitHub project: TerraBox_Scheduler
-                   under the GNU General public license V3.0
+              as GitHub project: TerraboxNL/TerraBox_Scheduler
+                under the GNU General public license V3.0
                           
       This program is free software: you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
